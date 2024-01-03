@@ -1,0 +1,31 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  padding: 2rem;
+
+  background-color: white;
+  color: black;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  height: 82vh;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 1px solid #f5f5f5;
+}
+
+@media (max-width: 768px) {
+  .contenedor-principal {
+    flex-direction: row;
+    height: 100vh;
+  }
+}
+

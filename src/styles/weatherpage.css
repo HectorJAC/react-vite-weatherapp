@@ -1,0 +1,8 @@
+.dos-columnas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 25rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 95%;
+}
