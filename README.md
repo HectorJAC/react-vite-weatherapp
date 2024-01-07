@@ -17,8 +17,7 @@ npm start
 - Vite  
 - React Router Dom  
 - Material UI  
-- Axios  
-- Context API  
+- Axios   
 - React Icons  
 - Formik
 

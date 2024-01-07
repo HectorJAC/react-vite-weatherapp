@@ -10,7 +10,7 @@ import { IoHome, IoSearchOutline  } from "react-icons/io5";
 
 export const Header = () => {
     return (
-        <Box sx={{marginBottom: 5}}>
+        <Box sx={{marginBottom: 1}}>
             <AppBar position="static">
                 <Toolbar>
                 <IconButton

@@ -2,11 +2,33 @@ import { WeatherCard } from "../components/WeatherCard";
 import '../styles/weathercardpage.css';
 
 export const WeatherCardPage = () => {
+
+    const ciudades = [
+        {
+            ciudad: 'Santo Domingo',
+            pais: 'DO'
+        },
+        {
+            ciudad: 'Barcelona',
+            pais: 'ES'
+        },
+        {
+            ciudad: 'Tokyo',
+            pais: 'JP'
+        }
+    ];
+
     return (
         <div className="tres-columnas">
             {
-                [1,2,3].map((item) => {
-                    return <WeatherCard key={item} />
+                ciudades.map((ciudad) => {
+                    return (
+                        <WeatherCard   
+                            key={ciudad.ciudad}  
+                            ciudad={ciudad.ciudad} 
+                            pais={ciudad.pais} 
+                        />
+                    );
                 })
             }
         </div>
