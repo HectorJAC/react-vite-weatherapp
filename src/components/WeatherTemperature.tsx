@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { IconContext } from "react-icons";
 import { CiSun, CiCloudSun, CiCloud } from "react-icons/ci";
 import { BsClouds } from "react-icons/bs";
 import { FaCloudShowersHeavy, FaCloudSunRain, FaRegSnowflake } from "react-icons/fa";
@@ -47,9 +48,9 @@ export const WeatherTemperature:FC<WeatherTemperatureProps> = ({ weather }) => {
     }
 
     return (
-        <div>
+        <IconContext.Provider value={{ size: "5em" }}>
             {weatherIcon(weather)}
-        </div>
+        </IconContext.Provider>
     );
 };
 

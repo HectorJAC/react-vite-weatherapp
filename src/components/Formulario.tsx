@@ -1,17 +1,28 @@
+import { FC } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { getWeather } from '../api/openWeatherMapApi';
 import { Formik, Form } from "formik";
 import '../styles/formulario.css';
 
-export const Formulario = () => {
+interface FormularioProps {
+    ciudad: string;
+    pais: string;
+}
+
+export const Formulario: FC<FormularioProps> = ({ ciudad, pais }) => {
+    const weatherResult = useQuery({
+        queryKey: ['weather', ciudad, pais],
+        queryFn: () => getWeather({ ciudad, pais }),
+    });
+
     return (
         <div className="formulario">
             <Formik
                 initialValues={{
                     ciudad: '',
-                    pais: ''
+                    pais: '',
                 }}
-                onSubmit={valores => {
-                    console.log(valores);
-                }}
+                onSubmit={weatherResult.refetch}
             >
                 <Form>
                     <div className="campo">

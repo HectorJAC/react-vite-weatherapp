@@ -1,4 +1,5 @@
-import { useEffect, useState, FC } from 'react';
+import { FC } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { getWeather } from '../api/openWeatherMapApi';
 import { WeatherTemperature } from './WeatherTemperature';
 import { Spinner } from './Spinner';
@@ -22,25 +23,22 @@ interface WeatherCardProps {
 
 export const WeatherCard:FC<WeatherCardProps> = ({ciudad, pais}) => {
     
-    const [weather, setWeather] = useState<WeatherState>();
+    const weatherData = useQuery<WeatherState>({
+        queryKey: ['weather', ciudad, pais],
+        queryFn: () => getWeather({ciudad, pais}),
+    });
 
-    useEffect(() => {
-        getWeather({ciudad, pais}).then((data) => {
-            setWeather(data);
-        });
-    }, [ciudad, pais]);
-
-    if (!weather) return <Spinner />;
+    if (weatherData.isLoading) return <Spinner />;
 
     return (
         <div className="weathercard">
             <h3 className='titulo-ciudad'>{ciudad}</h3>
             <h4 className='titulo-pais'>{pais}</h4>
             <p className='weather-icono'>
-                <WeatherTemperature weather={`${weather?.weather[0].description}`} />
+                <WeatherTemperature weather={`${weatherData.data?.weather[0].description}`} />
             </p>
             <p className='temperatura'>
-                {weather?.main.temp} <span> &deg;C </span>
+                {weatherData.data?.main.temp} <span> &deg;C </span>
             </p>
         </div>
     );

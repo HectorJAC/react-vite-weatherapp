@@ -23,8 +23,8 @@ export const WeatherCardPage = () => {
             {
                 ciudades.map((ciudad) => {
                     return (
-                        <WeatherCard   
-                            key={ciudad.ciudad}  
+                        <WeatherCard
+                            key={ciudad.ciudad}
                             ciudad={ciudad.ciudad} 
                             pais={ciudad.pais} 
                         />
