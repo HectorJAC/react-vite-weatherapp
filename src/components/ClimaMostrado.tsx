@@ -3,19 +3,28 @@ import { useQuery } from '@tanstack/react-query';
 import { getWeather } from '../api/openWeatherMapApi';
 import { Spinner } from './Spinner';
 import { WeatherTemperature } from './WeatherTemperature';
+import { FormularioProps } from '../interfaces/formularioProps';
 
 interface ClimaMostradoProps {
-    ciudad: string;
-    pais: string;
+    formData: FormularioProps;
 }
 
-export const ClimaMostrado: FC<ClimaMostradoProps> = ({ ciudad, pais }) => {
+export const ClimaMostrado: FC<ClimaMostradoProps> = ({ formData }) => {
+
+    const { ciudad, pais } = formData;
+
     const weatherResult = useQuery({
         queryKey: ['weather', ciudad, pais],
         queryFn: () => getWeather({ ciudad, pais }),
     });
 
-    if (weatherResult.isFetching) return <Spinner />;
+    if (!ciudad || !pais) {
+        return null;
+    }
+
+    if (weatherResult.isFetching) {
+        return <Spinner />;
+    }
 
     return (
         <div className="weathercard">
